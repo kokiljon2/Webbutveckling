@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="welcome"></h2>
+    <button id="HyrScooter">Hyr Elscooter</button>
+    <p id="Elscooter" style="display: none;"></p>
+
+    <script>
+        //Tar ut URL:en så vi kan hämta 
+        const params = new URLSearchParams(window.location.search);
+        const text = document.getElementById("welcome");
+        let username = params.get('username');
+        const HyrScooter = document.getElementById('HyrScooter');
+        const Elscooter = document.getElementById('Elscooter');
+        if(username){
+            text.textContent = `Välkommen ${username}!`;
+        } 
+        HyrScooter.addEventListener('click', function(event){
+            Elscooter.style="block";
+        });
+
+    </script>
+</body>
+</html>
