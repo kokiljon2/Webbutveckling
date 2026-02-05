@@ -6,11 +6,13 @@
     <title>VHDeS.se</title>
 </head>
 <body>
-    <form id="myForm">
-        <label for="username">Please enter your username:</label>
+    <h1>Hyr en Elscooter med bara en klick!</h1>
+    <button id="btnLogin">Logga in</button>
+    <form id="myForm" style="display: none;">
+        <label for="username">Användarnamn:</label>
         <input type="text" id="username" name="username">
         <br>
-        <label for="password">Password:</label>
+        <label for="password">lösenord:</label>
         <input type="password" id="password" name="password">
         <br>
         <input type="submit" value="Submit">
@@ -19,7 +21,11 @@
     <script>
         let username = null;
         const form = document.getElementById('myForm');
-
+        const btnLogin = document.getElementById('btnLogin');
+        btnLogin.addEventListener('click', function(event){
+            btnLogin.style.display="none";
+            form.style.display="block";
+        });
         form.addEventListener('submit', function (event){
             event.preventDefault(); //behövs för att formen ska fungera!
             
@@ -32,7 +38,7 @@
             
             //Extremt enkel kontroll av användarn och lösenord!
             //Bör göras på backend istället för frontend men men ...
-            if(text == "Khaok01" && password == "Elscooter"){
+            if(text == "Khaok01" && password == "0"){
                 username = text;
                 //skickar användaren med deras användarnamn till en ny sida
                 //Även detta är inte ett säkert sätt att skicka information, men men ...

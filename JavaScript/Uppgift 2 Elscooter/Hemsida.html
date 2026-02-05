@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h2 id="welcome"></h2>
     <button id="HyrScooter">Hyr Elscooter</button>
-    <p id="Elscooter" style="display: none;"></p>
+    <p id="Elscooter" style="display: none;">Välj hur länge du vill hyra elscooter för:</p>
+    <div style="display: flex;">
+        <button id="Hyr30min" style="display: none;">30 Minuter</button>
+        <button id="Hyr1tim" style="display: none;">1 Timme</button>
+        <button id="HyrCustom" style="display: none;">Custom</button>
+    </div>
+
 
     <script>
         //Tar ut URL:en så vi kan hämta 
@@ -17,13 +25,32 @@
         let username = params.get('username');
         const HyrScooter = document.getElementById('HyrScooter');
         const Elscooter = document.getElementById('Elscooter');
-        if(username){
+        const Hyr30min = document.getElementById('Hyr30min');
+        const Hyr1tim = document.getElementById('Hyr1tim');
+        const HyrCustom = document.getElementById('HyrCustom');
+
+        if (username) {
             text.textContent = `Välkommen ${username}!`;
-        } 
-        HyrScooter.addEventListener('click', function(event){
-            Elscooter.style="block";
+        }
+
+        HyrScooter.addEventListener('click', function (event) {
+            Elscooter.style.display = "block";
+            Hyr30min.style.display = "block";
+            Hyr1tim.style.display = "block";
+            HyrCustom.style.display = "block";
         });
 
+        Hyr30min.addEventListener('click', function (event) {
+            
+        });
+        Hyr1tim.addEventListener('click', function (event) {
+            
+        });
+        HyrCustom.addEventListener('click', function (event) {
+            
+        });
+        
     </script>
 </body>
+
 </html>
