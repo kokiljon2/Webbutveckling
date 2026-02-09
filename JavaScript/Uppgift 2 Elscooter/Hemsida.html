@@ -9,13 +9,20 @@
 
 <body>
     <h2 id="welcome"></h2>
-    <button id="HyrScooter">Hyr Elscooter</button>
+    <div style="display: flex;">
+        <button id="HyrScooter">Hyra</button>
+        <button id="Lämna">Lämna</button>
+    </div>
     <p id="Elscooter" style="display: none;">Välj hur länge du vill hyra elscooter för:</p>
     <div style="display: flex;">
         <button id="Hyr30min" style="display: none;">30 Minuter</button>
         <button id="Hyr1tim" style="display: none;">1 Timme</button>
         <button id="HyrCustom" style="display: none;">Custom</button>
     </div>
+    <p></p>
+    <button></button>
+    <p id="Pris/Tid" style="display: none;"></p>
+    <button id="Finalhyr" style="display: none;"> Hyr Scooter</button>
 
 
     <script>
@@ -23,33 +30,76 @@
         const params = new URLSearchParams(window.location.search);
         const text = document.getElementById("welcome");
         let username = params.get('username');
+        let pristid;
+        let hyrd = false;
         const HyrScooter = document.getElementById('HyrScooter');
+        const Lämna = document.getElementById('Lämna');
         const Elscooter = document.getElementById('Elscooter');
         const Hyr30min = document.getElementById('Hyr30min');
         const Hyr1tim = document.getElementById('Hyr1tim');
         const HyrCustom = document.getElementById('HyrCustom');
+        const PrisTid = document.getElementById('Pris/Tid');
+        const Finalhyr = document.getElementById('Finalhyr');
 
         if (username) {
             text.textContent = `Välkommen ${username}!`;
         }
 
         HyrScooter.addEventListener('click', function (event) {
-            Elscooter.style.display = "block";
-            Hyr30min.style.display = "block";
-            Hyr1tim.style.display = "block";
-            HyrCustom.style.display = "block";
+            if (hyrd) {
+                alert('Du har redan hyrt en Scooter!')
+            } else {
+                Elscooter.style.display = "block";
+                Hyr30min.style.display = "block";
+                Hyr1tim.style.display = "block";
+                HyrCustom.style.display = "block";
+            }
+        });
+
+        Lämna.addEventListener('click',function(event){
+            if(hyrd){
+                hyrd=false;
+                alert('Du har nu lämnat tillbaks Scootern');
+            }else{
+                alert('Du har inte hyrt en Scooter än');
+            }
         });
 
         Hyr30min.addEventListener('click', function (event) {
-            
+            Hyr1tim.style.display = "none";
+            HyrCustom.style.display = "none";
+            PrisTid.style.display = "block";
+            PrisTid.textContent = "Att hyra en scooter i 30 min kostar 50kr";
+            Finalhyr.style.display = "block";
+            pristid = 30;
         });
         Hyr1tim.addEventListener('click', function (event) {
-            
+            Hyr30min.style.display = "none";
+            HyrCustom.style.display = "none";
+            PrisTid.style.display = "block";
+            PrisTid.textContent = "Att hyra en scooter i 1 timme kostar 100kr";
+            Finalhyr.style.display = "block";
+            pristid = 1;
         });
         HyrCustom.addEventListener('click', function (event) {
-            
+
         });
-        
+
+        Finalhyr.addEventListener('click', function (event) {
+            if (pristid == 30) {
+                Hyr30min.style.display = "none";
+                PrisTid.style.display = "none";
+                alert('Du har hyrt en Scooter för 30 min');
+            } else if (pristid == 1) {
+                Hyr1tim.style.display = "none";
+                PrisTid.style.display = "none";
+                alert('Du har hyrt en Scooter för 1 timme');
+            }
+            Elscooter.style.display = "none";
+            Finalhyr.style.display = "none";
+            hyrd = true;
+        });
+
     </script>
 </body>
 
