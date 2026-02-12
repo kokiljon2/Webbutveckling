@@ -9,18 +9,20 @@
 
 <body>
     <h2 id="welcome"></h2>
-    <div style="display: flex;">
+    <div style="display: flex; gap: 5px;">
         <button id="HyrScooter">Hyra</button>
         <button id="Lämna">Lämna</button>
     </div>
     <p id="Elscooter" style="display: none;">Välj hur länge du vill hyra elscooter för:</p>
-    <div style="display: flex;">
+    <div style="display: flex; gap: 5px;">
         <button id="Hyr30min" style="display: none;">30 Minuter</button>
         <button id="Hyr1tim" style="display: none;">1 Timme</button>
         <button id="HyrCustom" style="display: none;">Custom</button>
     </div>
-    <p></p>
-    <button></button>
+    <div id="Customtid" style="display: flex; gap: 5px;" >
+    <input type="number" min="0" max="2">
+    <input type="number" min="5" max="60" step="5">
+    </div>
     <p id="Pris/Tid" style="display: none;"></p>
     <button id="Finalhyr" style="display: none;"> Hyr Scooter</button>
 
@@ -40,6 +42,7 @@
         const HyrCustom = document.getElementById('HyrCustom');
         const PrisTid = document.getElementById('Pris/Tid');
         const Finalhyr = document.getElementById('Finalhyr');
+        const Customtid = document.getElementById('Custom')
 
         if (username) {
             text.textContent = `Välkommen ${username}!`;
@@ -82,7 +85,10 @@
             pristid = 1;
         });
         HyrCustom.addEventListener('click', function (event) {
-
+            Hyr30min.style.display = "none";
+            Hyr1tim.style.display = "none";
+            PrisTid.style.display = "block";
+            PrisTid.textContent = "Hur länge vill du hyra en elscooter till?";
         });
 
         Finalhyr.addEventListener('click', function (event) {
