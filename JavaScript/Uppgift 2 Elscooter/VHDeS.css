@@ -1,3 +1,76 @@
-#Elscooter, #Hyr30min, #Hyr1tim, #HyrCustom, #Customtid, #PrisTid, #Finalhyr{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: white;
+}
+/*Från chat (box)*/
+.Box {
+    width: 600px;
+    min-height: 500px;
+    background-color: bisque;
+    color:white;
+
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+#status {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+button, input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #1e90ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+form {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    width: 250px;
+}
+
+form label {
+    font-size: 14px;
+}
+
+form input {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#Elscooter, #Hyr30min, #Hyr1tim, #HyrCustom, #Customtid, #PrisTid, #Finalhyr {
     display: none;
 }

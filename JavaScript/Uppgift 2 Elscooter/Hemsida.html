@@ -9,28 +9,31 @@
 </head>
 
 <body>
-    <h2 id="welcome"></h2>
-    <div style="display: flex; gap: 5px;">
-        <button id="HyrScooter">Hyra</button>
-        <button id="Lämna">Lämna</button>
-    </div>
-    <p id="Elscooter">Välj hur länge du vill hyra elscooter för:</p>
-    <div style="display: flex; gap: 5px;">
-        <button id="Hyr30min">30 Minuter</button>
-        <button id="Hyr1tim">1 Timme</button>
-        <button id="HyrCustom">Custom</button>
-    </div>
-    <div id="Customtid" style="gap: 5px;">
-        <label for="Tim">Timmar:</label>
-        <input type="number" min="0" max="2" name="Tim" id="Tim">
-        <label for="Min">Minuter:</label>
-        <input type="number" min="5" max="60" step="5" name="Min" id="Min">
-    </div>
-    <p id="PrisTid"></p>
-    <button id="Finalhyr"> Hyr Scooter</button>
-    <p>Senaste hyrd:</p>
-    <p id="senhyr"></p>
+    <div class="Box" id="Box">
+        <h2 id="welcome"></h2>
+        <p id="status">Status: Inte hyrd</p>
+        <div style="display: flex; gap: 5px;">
+            <button id="HyrScooter">Hyra</button>
+            <button id="Lämna">Lämna</button>
+        </div>
+        <p id="Elscooter">Välj hur länge du vill hyra elscooter för:</p>
+        <div style="display: flex; gap: 5px;">
+            <button id="Hyr30min">30 Minuter</button>
+            <button id="Hyr1tim">1 Timme</button>
+            <button id="HyrCustom">Custom</button>
+        </div>
+        <p id="PrisTid"></p>
+        <div id="Customtid" style="gap: 5px;">
+            <label for="Tim">Timmar:</label>
+            <input type="number" min="0" max="2" name="Tim" id="Tim">
+            <label for="Min">Minuter:</label>
+            <input type="number" min="5" max="60" step="5" name="Min" id="Min">
+        </div>
 
+        <button id="Finalhyr"> Hyr Scooter</button>
+        <p>Senaste hyrd:</p>
+        <p id="senhyr"></p>
+    </div>
 
     <script>
         //Tar ut URL:en så vi kan hämta 
@@ -49,6 +52,10 @@
         const Finalhyr = document.getElementById('Finalhyr');
         const Customtid = document.getElementById('Customtid');
         const senhyr = document.getElementById('senhyr');
+        const status = document.getElementById('status');
+        const tid = new Date().toLocaleTimeString();
+        const date = new Date().toLocaleDateString();
+        const box =document.getElementById('Box');
 
         if (username) {
             text.textContent = `Välkommen ${username}!`;
@@ -69,6 +76,8 @@
             if (hyrd) {
                 hyrd = false;
                 alert('Du har nu lämnat tillbaks Scootern');
+                status.textContent = "Status: Inte hyrd";
+                box.style.backgroundColor="bisque";
             } else {
                 alert('Du har inte hyrt en Scooter än');
             }
@@ -97,7 +106,7 @@
             PrisTid.textContent = "Hur länge vill du hyra en elscooter till?";
             Customtid.style.display = "flex";
             Finalhyr.style.display = "block";
-            pristid=2;
+            pristid = 2;
         });
 
         Finalhyr.addEventListener('click', function (event) {
@@ -117,28 +126,34 @@
                 HyrCustom.style.display = "none";
                 let Tim = document.getElementById('Tim').value;
                 let Min = document.getElementById('Min').value;
-                if(Tim<1 && Min<5){
+                if (Tim < 1 && Min < 5) {
                     alert(`Det går inte att hyra för 0 timmar och 0 minuter`);
-                    hyrd=false;
+                    hyrd = false;
                 }
-                else if(Tim<1 && Min>=5){
+                else if (Tim < 1 && Min >= 5) {
                     alert(`Du har hyrt en Scooter för ${Min} minuter`);
-                    hyrd=true;
+                    hyrd = true;
                 }
-                else if(Tim>=1 && Min<5){
+                else if (Tim >= 1 && Min < 5) {
                     alert(`Du har hyrt en Scooter för ${Tim} timmar`);
-                    hyrd=true;
+                    hyrd = true;
                 }
-                else{
+                else if (Tim >= 1 && Min == 60) {
+                    Tim++;
+                    alert(`Du har hyrt en Scooter för ${Tim} timmar`);
+                    hyrd = true;
+                }
+                else {
                     alert(`Du har hyrt en Scooter för ${Tim} timmar och ${Min} minuter`);
-                    hyrd=true;
+                    hyrd = true;
                 }
             }
             Elscooter.style.display = "none";
             Finalhyr.style.display = "none";
-            senhyr.textContent=`${tid} ${date}`;
+            status.textContent = "Status: Hyrd";
+            senhyr.textContent = `Tiden: ${tid}, Datum: ${date}`;
+            box.style.backgroundColor="burlywood";
         });
-
     </script>
 </body>
 
